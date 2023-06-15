@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aplikasi Absensi Mahasiswa</title>
+    <script>
+        function validateForm() {
+            var absensi = document.forms["absensiForm"]["absensi"].value;
+            var alasan = document.forms["absensiForm"]["alasan"].value;
+            if (absensi === "Izin" && alasan === "") {
+                alert("Please fill out this field: Alasan");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Aplikasi Absensi Mahasiswa</h1>
+    <h2>Pencarian Mahasiswa</h2>
+    <form method="post" action="search_mahasiswa.php">
+        <label for="nim">NIM:</label>
+        <select name="nim">
+            <option value="" selected disabled>Pilih NIM Mahasiswa</option>
+            <?php
+            $query = "SELECT nim FROM mahasiswa";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row["nim"] . "'>" . $row["nim"] . "</option>";
+                }
+            }
+            ?>
+        </select>
+        <input type="submit" name="cari" value="Cari">
+    </form>
+
+    <h2>Absensi Mahasiswa</h2>
+    <form name="absensiForm" method="post" action="save_absensi.php" onsubmit="return validateForm();">
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nim = $_POST["nim"];
+            $nama = cariMahasiswa($nim, $conn);
+            if ($nama !== false) {
+                echo "<p>NIM: $nim</p>";
+                echo "<p>Nama: $nama</p>";
+        ?>
+                <label for="absensi">Tipe Absensi:</label>
+                <select name="absensi" required>
+                    <option value="" selected disabled>Pilih Tipe Absensi</option>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Absen">Absen</option>
+                    <option value="Izin">Izin</option>
+                    <option value="Sakit">Sakit</option>
+                </select>
+                <br>
+                <label for="alasan">Alasan (hanya untuk Izin):</label>
+                <input type="text" id="alasan" name="alasan">
+                <br>
+                <input type="submit" name="submit" value="Submit">
+        <?php
+            }
+        }
+        ?>
+    </form>
+
+    <h2>Report File</h2>
+    <form method="post" action="generate_report.php">
+        <input type="submit" name="generate_report" value="Cetak Laporan">
+    </form>
+</body>
+</html>
