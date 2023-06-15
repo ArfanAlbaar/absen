@@ -9,17 +9,22 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-$selectedNIM = $_POST['selectedNIM'];
-$absensi = $_POST['absensi'];
-$alasan = $_POST['alasan'];
+$term = $_GET['term'];
 
-$sql = "INSERT INTO absensi_table (nim, absensi, alasan) VALUES ('$selectedNIM', '$absensi', '$alasan')";
+$sql = "SELECT nim, nama FROM mahasiswa WHERE nama LIKE '%$term%'";
+$result = $conn->query($sql);
 
-if ($conn->query($sql) === TRUE) {
-    echo "<script>alert('Data berhasil disimpan.'); window.location.href = 'index.php';</script>";
-} else {
-    echo "<script>alert('Data gagal disimpan.'); window.location.href = 'index.php';</script>";
+$data = array();
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $data[] = array(
+            'nim' => $row['nim'],
+            'nama' => $row['nama']
+        );
+    }
 }
+
+echo json_encode($data);
 
 $conn->close();
 ?>

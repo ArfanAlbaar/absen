@@ -3,7 +3,7 @@
 <head>
     <title>Absensi Mahasiswa</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
+    <!-- <style>
         body {
             display: flex;
             justify-content: center;
@@ -47,7 +47,7 @@
             margin-top: 10px;
             align-self: flex-end;
         }
-    </style>
+    </style> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.13.1/themes/ui-lightness/jquery-ui.css">
@@ -80,6 +80,13 @@
                 }
             });
 
+            $('#nim-input').on('autocompleteselect', function(event, ui) {
+                var selectedNIM = ui.item.value.split(' - ')[0];
+                var selectedNama = ui.item.value.split(' - ')[1];
+                $('#nim-input').val(selectedNIM);
+                $('#nama-input').val(selectedNama);
+            });
+
             $('#absensi-input').on('change', function() {
                 var selectedValue = $(this).val();
                 if (selectedValue === 'Izin') {
@@ -88,6 +95,23 @@
                     $('#alasan-input-container').hide();
                 }
             });
+
+            $('form').on('submit', function(e) {
+                var selectedValue = $('#absensi-input').val();
+                var alasan = $('#alasan-input').val();
+                if (selectedValue === 'Izin' && alasan === '') {
+                    e.preventDefault();
+                    alert('Mohon isi alasan untuk absensi Izin.');
+                }
+
+                // // Check if selectedNIM is empty or not found in the suggestions
+                // var selectedNIM = $('#nim-input').val();
+                // var suggestions = $('#nim-input').autocomplete('option', 'source');
+                // if (selectedNIM === '' || suggestions.indexOf(selectedNIM) === -1) {
+                //     e.preventDefault();
+                //     alert('NIM atau Nama Mahasiswa tidak valid.');
+                // }
+            });
         });
     </script>
 </head>
@@ -95,7 +119,7 @@
     <h1>Absensi Mahasiswa</h1>
     <form action="save_absensi.php" method="POST">
         <div style="display: flex; flex-direction: column; align-items: center;">
-            <label for="nim-input">Pilih NIM Mahasiswa:</label>
+            <label for="nim-input">Pilih NIM atau Nama Mahasiswa:</label>
             <input type="text" id="nim-input" name="selectedNIM" autocomplete="off">
             <input type="hidden" id="nama-input" name="nama">
 

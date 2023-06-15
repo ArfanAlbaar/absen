@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 
 $term = $_GET['term'];
 
-$sql = "SELECT nim, nama FROM mahasiswa WHERE nim LIKE '$term%'";
+$sql = "SELECT nim, nama FROM mahasiswa WHERE nim LIKE '%$term%' OR nama LIKE '%$term%'";
 $result = $conn->query($sql);
 
 $data = array();
