@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="../css/styleLogin.css">
+</head>
+<body>
+    <div class="container">
+        <img src="../img/logo.png" alt="Logo Kampus">
+        <h1>Selamat Datang di Presensi UNPAM</h1>
+        <p>Login Dosen Universitas Pamulang</p>
+        
+        <form action="login.php" method="post">
+            <input type="text" name="nidn" placeholder="NIDN" required>
+            <div class="password-field">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span id="toggle-password" class="show-password" onclick="togglePasswordVisibility()"></span>
+            </div>
+            <label>
+                <input type="checkbox" name="remember"> Remember Me
+            </label>
+            <button type="submit" name="submit">Login</button>
+            <a href="https://api.whatsapp.com/send?phone=081212345678" target="_blank">Forgot Password</a>
+            
+        </form>
+    </div>
+
+    <script src="../includes/script.js"></script>
+</body>
+</html>

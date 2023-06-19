@@ -8,7 +8,7 @@
 <body>
     <h1>Generate Report</h1>
 
-    <form action="fpdf.php" method="post">
+    <form action="../includes/fpdf.php" method="post">
         <input type="submit" name="generate_report" value="Cetak Laporan">
     </form>
 </body>

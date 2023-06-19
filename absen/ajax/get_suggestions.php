@@ -1,17 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "absensi_mahasiswa";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
-}
+require '../config/connectMhs.php';
 
 $term = $_GET['term'];
 
-$sql = "SELECT nim, nama FROM mahasiswa WHERE nama LIKE '%$term%'";
+$sql = "SELECT nim, nama FROM mahasiswa WHERE nim LIKE '%$term%' OR nama LIKE '%$term%'";
 $result = $conn->query($sql);
 
 $data = array();

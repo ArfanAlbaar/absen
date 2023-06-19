@@ -1,0 +1,94 @@
+body {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    font-family: 'Times New Roman', Times, serif; 
+    position: relative; 
+    background-color: #f2f2f2; 
+}
+
+/* Menempatkan tulisan Absensi Mahasiswa di atas */
+h1 {
+    text-align: center; 
+    margin-top: 0; 
+    margin-bottom: 45px; /* Tambahkan margin-bottom di sini */ 
+    font-size: 50px; /* Tambahkan font-size di sini */ 
+    color: #333; 
+}
+.container img { 
+    width: 200px;
+    height: 200px;
+    margin-bottom: 50px;
+}
+
+form {
+    border: 2px solid #ccc; 
+    padding: 30px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    background-color: #fff; 
+    box-shadow: 0 0 2px rgba(0, 0, 0, 1); 
+    border-radius: 30px; 
+}
+
+/* label {
+    margin-bottom: 10px;
+} */
+
+input[type="text"],
+select {
+    padding: 10px; 
+    margin-bottom: 10px; 
+    font-size: 16px; /* Tambahkan font-size di sini */ 
+}
+
+#alasan-input-container {
+    display: none;
+}
+
+input[type="submit"] {
+    padding: 10px 20px; 
+    font-size: 15px; /* Tambahkan font-size di sini */ 
+    background-color: #4caf50; 
+    color: #fff; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+    margin-top: 15px;
+}
+
+.logout-button { 
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    font-size: 16px; 
+    color: #000000; /* Ubah warna teks menjadi putih */ 
+  } 
+
+.print-button {
+    margin-top: 10px; 
+    align-self: center; 
+    border: 2px solid #ccc; 
+    padding: 10px 150px; 
+    font-size: 16px; 
+    background-color: #fff; 
+    color: #333; 
+    border-radius: 15px; 
+    border-style: solid; 
+} 
+
+  /* Tambahkan kode CSS berikut */ 
+.print-button { 
+    margin-top: 30px; 
+    align-self: center; 
+    border-style: solid; 
+    order: 2; 
+  } 
+   
+input[type="submit"] { 
+    order: 1; 
+  }
