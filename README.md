@@ -15,3 +15,10 @@ Commit kedua berisi perubahan dan fixed dan tambahan
 9. Tolong buat source code untuk membuat Report File dalam bentuk PDF, yang di didalamnya berisi dari isi table Absensi 
 10. Tambahkan fitur tombol untuk mencetak report file
 11. Bisa mencari dalam bentuk NIM dan Nama
+
+Commit ketiga berisi file yang lebih rapih dan terstrutur dan beberapa fitur tambahan
+1. Login dosen
+2. Logout
+3. UI absensi lebih baik
+4. Halaman login
+5. Data mahasiswa dan dosen
